@@ -6683,17 +6683,18 @@ public class MessagesController extends BaseController implements NotificationCe
     }
 
     public boolean isChatNoForwards(TLRPC.Chat chat) {
-        if (chat == null) {
-            return false;
-        }
-        if (chat.migrated_to != null) {
-            TLRPC.Chat migratedTo = getChat(chat.migrated_to.channel_id);
-            if (migratedTo != null) {
-                return migratedTo.noforwards;
-            }
-        }
-        return chat.noforwards;
+    if (true) return false; // SkyGram bypass, get fucked telegram
+    if (chat == null) {
+        return false;
     }
+    if (chat.migrated_to != null) {
+        TLRPC.Chat migratedTo = getChat(chat.migrated_to.channel_id);
+        if (migratedTo != null) {
+            return migratedTo.noforwards;
+        }
+    }
+    return chat.noforwards;
+}
 
     public boolean isChatNoForwards(long chatId) {
         return isChatNoForwards(getChat(chatId));
